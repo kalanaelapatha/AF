@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script>
+
+
+        //   var vehicleName='Toyota';
+
+        //  function printVehicleNameouter() {
+        //      console.log(this.vehicleName);
+        //        console.log(this);
+
+
+        //    printVehicleNameouter();
+
+
+
+
+        //    var vehicle={
+
+        //       vehicleName:'Nissan',
+        //       printVehicleNameInner:function () {
+
+        //          return function () {
+        //                console.log(this.vehicleName);
+        //        }
+        //      }
+        //   };
+
+        //   var execute=vehicle.printVehicleNameInner();
+        // execute.call(vehicle);
+
+
+        //        var execute =vehicle.printVehicleNameInner().bind(vehicle);
+        //        execute();
+
+        //      function taxCalculator(tax) {
+
+        //           var taxPrecentage= tax;
+        //          return function(amount){
+
+        //              return amount* tax/100;
+        //          }
+
+        //     }
+
+        //      var calculator=taxCalculator(10);
+        //      console.log(calculator(90));
+
+
+        // function fetchUsers() {
+        //     fetch('https://api.github.com/users').then(function (response) {
+        //
+        //         return response.json();
+        //
+        //
+        //     }).then(function (json) {
+        //
+        //         console.log(json);
+        //
+        //     });
+        // }
+
+        //fetchUsers();
+
+        // function fetchUsers() {
+        //     return fetch('https://api.github.com/users')
+        //         .then(response =>response.json());
+        // }
+        //
+        //
+        // fetchUsers().then(function (json) {
+        //     console.log(json);
+        //
+        // });
+
+        function Vehicle(type) {
+
+            Vehicle.VehicleCount++;
+
+            this.type =type;
+
+        }
+        Vehicle.VehicleCount = 0;
+
+        Vehicle.prototype.drive = function () {
+            console.log('Vehicle  is driving');
+        };
+
+
+        var vehicle =  new Vehicle('Toyota');
+
+        function Car(type) {
+            Vehicle.call(this.type);
+        }
+
+        Car.prototype=Object.create(Vehicle.prototype);
+        Car.prototype.constructor= Car;
+        Car.prototype.balanceWheels=function () {
+            console.log('Wheels are balanced');
+        };
+
+        var car= new Car('Nissan');
+        car.drive();
+
+    </script>
+
+
+
+</head>
+<body>
+
+</body>
+</html>
